@@ -67,7 +67,14 @@ service GatewayService {
 		};
 	}
 
-    // GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.
+	// SendPing sends a ping.
+	rpc SendPing(SendPingRequest) returns (SendPingResponse) {
+		option (google.api.http) = {
+			post: "/api/gateways/{gateway_id}/ping"
+		};
+	}
+
+	// GenerateGatewayClientCertificate returns TLS certificate gateway authentication / authorization.
     // This endpoint can ony be used when ChirpStack Network Server is configured with a gateway
     // CA certificate and key, which is used for signing the TLS certificate. The returned TLS
     // certificate will have the Gateway ID as Common Name.
@@ -328,6 +335,22 @@ message PingRX {
 message GetLastPingRequest {
 	// Gateway ID (HEX encoded).
 	string gateway_id = 1 [json_name = "gatewayID"];
+}
+
+message SendPingRequest {
+	// Gateway ID (HEX encoded).
+	string gateway_id = 1 [json_name = "gatewayID"];
+}
+
+message SendPingResponse {
+	// Created at timestamp.
+	google.protobuf.Timestamp created_at = 1;
+
+	// Frequency (Hz).
+	uint32 frequency = 2;
+
+	// Data-rate.
+	uint32 dr = 3;
 }
 
 message GetLastPingResponse {
