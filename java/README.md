@@ -25,7 +25,7 @@ sudo chown $(id -u).$(id -g) java/build/ -R && mvn -f java/build/pom.xml install
 All messages, services, constants, etc. are auto-generated from the ChirpStack protobuf definitions. The result is that
 this package structure matches that of the protobuf definitions.
 
-The protobuf definitions can be found here: https://github.com/brocaar/chirpstack-api/tree/master/protobuf
+The protobuf definitions can be found here: https://github.com/alviso/chirpstack-api/tree/master/protobuf
 
 ### Example
 
